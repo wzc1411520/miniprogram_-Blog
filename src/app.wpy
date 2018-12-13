@@ -16,28 +16,44 @@ import 'wepy-async-function'
 import { setStore } from 'wepy-redux'
 import configStore from './store'
 
-const store = configStore()
-setStore(store)
+const store = configStore();
+setStore(store);
 
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/index'
+      'pages/index',
+      'pages/user',
     ],
     window: {
-      backgroundTextStyle: 'light',
+      backgroundTextStyle: 'light',//dark/light
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
-    }
+      navigationBarTitleText: '猫奴Blog',
+      navigationBarTextStyle: 'black'//white
+    },
+      tabBar: {
+          list: [{
+              pagePath: 'pages/index',
+              text: '首页',
+              iconPath: 'images/index.png',
+              selectedIconPath: 'images/index_selected.png'
+          }, {
+              pagePath: 'pages/user',
+              text: '我的',
+              iconPath: 'images/user.png',
+              selectedIconPath: 'images/user_selected.png'
+          }],
+          color: '#707070',
+          selectedColor: '#00b5ad'
+      }
   }
 
   globalData = {
     userInfo: null
-  }
+  };
 
   constructor () {
-    super()
+    super();
     this.use('requestfix')
   }
 
@@ -54,18 +70,18 @@ export default class extends wepy.app {
   }
 
   async testAsync () {
-    const data = await this.sleep(3)
+    const data = await this.sleep(3);
     console.log(data)
   }
 
   getUserInfo(cb) {
-    const that = this
+    const that = this;
     if (this.globalData.userInfo) {
       return this.globalData.userInfo
     }
     wepy.getUserInfo({
       success (res) {
-        that.globalData.userInfo = res.userInfo
+        that.globalData.userInfo = res.userInfo;
         cb && cb(res.userInfo)
       }
     })
