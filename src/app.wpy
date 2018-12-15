@@ -41,13 +41,14 @@
 
 <script>
     import wepy from 'wepy'
-import 'wepy-async-function'
+    import 'wepy-async-function'
 
 export default class extends wepy.app {
       config = {
         pages: [
           'pages/index',
-          'pages/user'
+          'pages/user',
+          'pages/auth/login'
         ],
         window: {
           backgroundTextStyle: 'light',
@@ -80,9 +81,7 @@ export default class extends wepy.app {
 
       // 小程序初始化入口
       onLaunch() {
-        wepy.login().then(res => {
-          console.log('login: ', res)
-        })
+    
       }
     }
 </script>

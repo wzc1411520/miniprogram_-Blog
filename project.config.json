@@ -1,12 +1,12 @@
 {
 	"description": "A WePY project",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": false,
 		"minified": false,
 		"newFeature": true,
-		"autoAudits": true
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
 	"appid": "wxc04f8f2f0ea35101",
