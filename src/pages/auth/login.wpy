@@ -123,10 +123,11 @@
             wepy.navigateBack()
           }
         } catch (err) {
-          wepy.showModal({
-            title: '提示',
-            content: '服务器错误，请联系管理员'
-          })
+          console.log(err)
+//          wepy.showModal({
+//            title: '提示',
+//            content: '服务器错误，请联系管理员'
+//          })
         }
       }
     }

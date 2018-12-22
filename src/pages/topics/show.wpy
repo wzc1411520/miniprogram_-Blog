@@ -20,7 +20,7 @@
     <view class="page">
         <view class="page__bd">
             <view class="weui-cells weui-cells_after-title">
-                <navigator class="weui-cell">
+                <navigator class="weui-cell" url="/pages/topics/userIndex?user_id={{ topic.user.id }}">
                     <view class="weui-cell__hd avatar-wrap">
                         <image class="avatar" src="{{ topic.user.avatar }}"/>
                     </view>
