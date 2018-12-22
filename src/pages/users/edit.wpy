@@ -23,7 +23,7 @@
         <view class="page__bd">
             <form bindsubmit="submit">
                 <view class="avatar-wrap">
-                    <image class="avatar" src="{{domain}}/{{ user.avatar }}" @tap="updateAvatar"/>
+                    <image class="avatar" src="{{ user.avatar }}" @tap="updateAvatar"/>
                 </view>
                 <!-- 填写姓名 -->
                 <view class="weui-cells__title">姓名</view>

@@ -24,7 +24,7 @@
                 <!-- 已登录 -->
                 <navigator class="weui-cell" wx:if="{{ user }}" url="/pages/users/edit">
                     <view class="weui-cell__hd avatar-wrap">
-                        <image class="avatar" src="{{domain}}/{{ user.avatar }}"/>
+                        <image class="avatar" src="{{ user.avatar }}"/>
                     </view>
                     <view class="weui-cell__bd">
                         <view>{{ user.name }}</view>
@@ -84,7 +84,7 @@
       async onShow() {
             // 每次打开页面，获取当前用户信息
         this.user = await this.$parent.getCurrentUser()
-        console.log('me' + this.user)
+        console.log(this.user)
         this.domain = this.$parent.globalData.domain
         this.$apply()
       }

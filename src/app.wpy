@@ -81,7 +81,17 @@ export default class extends wepy.app {
         }
       }
       globalData = {
-        domain: 'http://blog.test'
+        domain: 'http://blog.test',
+        refreshPages: []
+      }
+      checkRefreshPages (route, callback) {
+        let refreshIndex = this.globalData.refreshPages.indexOf(route)
+        if (refreshIndex === -1) {
+          return
+        }
+
+        this.globalData.refreshPages.splice(refreshIndex, 1)
+        callback && callback()
       }
       constructor () {
         super()
@@ -108,10 +118,11 @@ export default class extends wepy.app {
           if (!user) {
             console.log(123456)
             let userResponse = await api.authRequest('user')
-            console.log(userResponse.statusCode)
+            console.log(userResponse)
             // 状态码为 200 表示请求成功
-            if (userResponse.statusCode === 201) {
-              user = userResponse.data
+            if (userResponse.statusCode === 200) {
+              let user = userResponse.data.data
+              console.log(userResponse)
               wepy.setStorageSync('user', user)
             }
           }
