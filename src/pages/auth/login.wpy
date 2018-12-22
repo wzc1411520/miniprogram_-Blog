@@ -116,8 +116,9 @@
         try {
                 // 打开页面自动调用一次登录
           let authResponse = await api.login()
-
-                // 登录成功返回上一页
+          console.log(123456)
+          console.log(authResponse)
+            // 登录成功返回上一页
           if (authResponse.statusCode === 201) {
             wepy.navigateBack()
           }

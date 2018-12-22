@@ -24,7 +24,7 @@
                 <!-- 已登录 -->
                 <navigator class="weui-cell" wx:if="{{ user }}" url="/pages/users/edit">
                     <view class="weui-cell__hd avatar-wrap">
-                        <image class="avatar" src="{{ user.avatar }}"/>
+                        <image class="avatar" src="{{domain}}/{{ user.avatar }}"/>
                     </view>
                     <view class="weui-cell__bd">
                         <view>{{ user.name }}</view>
@@ -77,12 +77,15 @@
         navigationBarTitleText: '我的'
       }
       data = {
+        domain: '',
             // 用户信息
         user: null
       }
       async onShow() {
             // 每次打开页面，获取当前用户信息
         this.user = await this.$parent.getCurrentUser()
+        console.log('me' + this.user)
+        this.domain = this.$parent.globalData.domain
         this.$apply()
       }
       methods = {
@@ -99,7 +102,7 @@
             console.log(err)
             wepy.showModal({
               title: '提示',
-              content: '服务器错误，请联系管理员'
+              content: '服务器错误，请联系管理员123'
             })
           }
         }
