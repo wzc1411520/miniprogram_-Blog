@@ -31,7 +31,7 @@ export default class ReplyMixin extends wepy.mixin {
       if (repliesResponse.statusCode === 200) {
         let replies = repliesResponse.data.data
         console.log(replies)
-        if(replies.length === 0){
+        if (replies.length === 0) {
           this.noMoreData = true
           this.$apply()
         }

@@ -56,7 +56,8 @@ export default class extends wepy.app {
           'pages/auth/login',
           'pages/auth/register',
           'pages/replies/index',
-          'pages/replies/userIndex'
+          'pages/replies/userIndex',
+          'pages/replies/create'
 
         ],
 
@@ -84,7 +85,8 @@ export default class extends wepy.app {
       }
       globalData = {
         domain: 'http://blog.test',
-        refreshPages: []
+        refreshPages: [],
+        unreadCount: 0
       }
       checkRefreshPages (route, callback) {
         let refreshIndex = this.globalData.refreshPages.indexOf(route)
@@ -103,7 +105,26 @@ export default class extends wepy.app {
 
       // 小程序初始化入口
       onLaunch() {
-    
+          // 小程序启动，调用一起获取未读消息数
+        this.updateUnreadCount()
+          // 每隔 60 秒，调用一起获取未读消息数
+        setInterval(() => {
+          this.updateUnreadCount()
+        }, 60000)
+      }
+      async updateUnreadCount() {
+          // 未登录不需要请求
+        if (!this.checkLogin()) {
+          return
+        }
+
+          // 请求消息统计接口
+        let notificationResponse = await api.authRequest('user/notifications/stats', false)
+
+          //  请求成功，赋值全局变量 unreadCount
+        if (notificationResponse.statusCode === 200) {
+          this.globalData.unreadCount = notificationResponse.data.unread_count
+        }
       }
     // 获取当前登录用户信息
       async getCurrentUser () {
