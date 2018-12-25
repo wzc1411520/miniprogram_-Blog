@@ -70,7 +70,7 @@ export default class ReplyMixin extends wepy.mixin {
     if (!user) {
       return false
     }
-    return (reply === user|| this.$parent.can('manage_contents'))
+    return (reply === user || this.$parent.can('manage_contents'))
   }
 
   async onPullDownRefresh() {

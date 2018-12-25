@@ -192,7 +192,7 @@
                     // 设置用户信息
             wepy.setStorageSync('user', registerResponse.data)
             // 获取用户权限
-              this.$parent.getPerms()
+            this.$parent.getPerms()
             wepy.showToast({
               title: '注册成功',
               icon: 'success'
